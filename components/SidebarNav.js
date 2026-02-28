@@ -1,10 +1,9 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BsPeople } from "react-icons/bs";
-import { FaCartArrowDown } from "react-icons/fa";
+import { BsCart3, BsPeople } from "react-icons/bs";
 import { FiHome, FiBox, FiGrid, FiTruck, FiBarChart2 } from "react-icons/fi";
-import { IoCartOutline } from "react-icons/io5";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: FiHome },
@@ -12,11 +11,11 @@ const navItems = [
   { href: "/categories", label: "Categories", icon: FiGrid },
   { href: "/suppliers", label: "Suppliers", icon: FiTruck },
   { href: "/customers", label: "Customers", icon: BsPeople },
-  { href: "sales", label: "Sales", icon: IoCartOutline },
+  { href: "/sales", label: "Sales", icon: BsCart3 },
   { href: "/reports", label: "Reports", icon: FiBarChart2 },
 ];
 
-export default function SidebarNav() {
+export default function SidebarNav({ onNavClick = () => {} }) {
   const pathname = usePathname();
 
   return (
@@ -28,19 +27,19 @@ export default function SidebarNav() {
           <Link
             key={item.href}
             href={item.href}
+            onClick={onNavClick}
             style={{
               display: "flex",
               alignItems: "center",
               gap: "12px",
               padding: "12px 16px",
               borderRadius: "10px",
-              color: "white",
+              color: isActive ? "white" : "#0B7894",
               textDecoration: "none",
-              fontSize: "14px",
+              fontSize: "15px",
               fontWeight: isActive ? "700" : "500",
               marginBottom: "4px",
-              background: isActive ? "rgba(255,255,255,0.25)" : "transparent",
-
+              background: isActive ? "#0B7894" : "transparent",
               transition: "all 0.2s",
             }}
           >

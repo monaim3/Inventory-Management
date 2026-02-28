@@ -1,7 +1,7 @@
 import "./globals.css";
-import Link from "next/link";
 import Image from "next/image";
 import SidebarNav from "../components/SidebarNav";
+
 export const metadata = {
   title: "Inventory Management System",
 };
@@ -18,13 +18,12 @@ export default function RootLayout({ children }) {
           minHeight: "100vh",
         }}
       >
-        {/* Sidebar */}
+        {/* Sidebar — fixed */}
         <aside
           style={{
             width: "240px",
             minHeight: "100vh",
-            background:
-              "linear-gradient(180deg, #09637E 0%, #088395 60%, #7AB2B2 100%)",
+            background: "#EBF4F6",
             display: "flex",
             flexDirection: "column",
             position: "fixed",
@@ -35,44 +34,32 @@ export default function RootLayout({ children }) {
             zIndex: 100,
           }}
         >
-          {/* Logo */}
           <div
             style={{
               padding: "20px 24px",
               borderBottom: "1px solid rgba(255,255,255,0.15)",
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
             }}
           >
             <Image
-              src="/logo.png"
+              src="/logo2.png"
               alt="Logo"
-              width={80}
+              width={150}
               height={80}
               style={{ borderRadius: "6px", objectFit: "contain" }}
             />
           </div>
 
-          {/* Nav — Client Component */}
           <SidebarNav />
 
-          {/* Bottom */}
           <div
             style={{
               padding: "20px 24px",
-              borderBottom: "1px solid rgba(255,255,255,0.15)",
+              fontSize: "11px",
+              color: "#aaa",
+              textAlign: "center",
             }}
           >
-            <div
-              style={{
-                fontSize: "11px",
-                color: "rgba(255,255,255,0.5)",
-                textAlign: "center",
-              }}
-            >
-              Inventory Management System © 2026
-            </div>
+            Inventory Management System © 2026
           </div>
         </aside>
 
@@ -92,7 +79,7 @@ export default function RootLayout({ children }) {
               boxShadow: "0 2px 8px rgba(9,99,126,0.06)",
             }}
           >
-            <div style={{ fontSize: "16px", color: "#7AB2B2" }}>
+            <div style={{ fontSize: "18px", color: "#0B7894" }}>
               Welcome back
             </div>
             <div
@@ -101,7 +88,7 @@ export default function RootLayout({ children }) {
                 color: "white",
                 borderRadius: "20px",
                 padding: "6px 16px",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: "600",
               }}
             >

@@ -1,6 +1,5 @@
 import db from "@/lib/db";
 
-// GET - সব products আনো (LEFT JOIN দিয়ে)
 export async function GET() {
   try {
     const [rows] = await db.query(`

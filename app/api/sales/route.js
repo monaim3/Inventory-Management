@@ -22,7 +22,6 @@ export async function POST(request) {
   try {
     const { customer_id, product_id, quantity, note } = await request.json();
 
-    // Product এর current price আর quantity check করো
     const [products] = await db.query(
       "SELECT price, quantity FROM products WHERE id = ?",
       [product_id],
@@ -38,19 +37,16 @@ export async function POST(request) {
     const unit_price = product.price;
     const total_price = unit_price * quantity;
 
-    // Sale insert করো
     const [result] = await db.query(
       "INSERT INTO sales (customer_id, product_id, quantity, unit_price, total_price, note) VALUES (?, ?, ?, ?, ?, ?)",
       [customer_id, product_id, quantity, unit_price, total_price, note],
     );
 
-    // Product quantity কমাও (stock OUT)
     await db.query("UPDATE products SET quantity = quantity - ? WHERE id = ?", [
       quantity,
       product_id,
     ]);
 
-    // Stock transaction record করো
     await db.query(
       "INSERT INTO stock_transactions (product_id, type, quantity, note) VALUES (?, ?, ?, ?)",
       [product_id, "OUT", quantity, `Sale #${result.insertId}`],

@@ -2,7 +2,6 @@ import db from "@/lib/db";
 
 export async function GET() {
   try {
-    // LEFT JOIN - সব product, category সহ
     const [leftJoin] = await db.query(`
       SELECT 
         p.name AS product_name, p.price, p.quantity,
@@ -11,7 +10,6 @@ export async function GET() {
       LEFT JOIN categories c ON p.category_id = c.id
     `);
 
-    // RIGHT JOIN - সব supplier, product থাকুক বা না থাকুক
     const [rightJoin] = await db.query(`
       SELECT 
         s.name AS supplier_name, s.phone,
